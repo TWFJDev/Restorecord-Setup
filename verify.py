@@ -21,8 +21,16 @@ async def on_ready():
     try:
         synced = await bot.tree.sync()
         print(f'\nSynced {len(synced)} command(s) and started the bot!\n-------')
-        await bot.change_presence(activity=discord.Game(name=".gg/demonservices"), status=discord.Status.dnd)
+        await bot.change_presence(activity=discord.Game(name="Verifying Members"), status=discord.Status.dnd)
     except Exception as e:
         print(e)
+       
+@bot.tree.command(name='verify', description='Sends Verification Message')
+async def verify(interaction: discord.Interaction):
+
+    em = discord.Embed(description='Use The Button Below To Verify And Gain Access To The Server', color=discord.Color.from_rgb(0, 0, 0))
+    view = VerifyButton()
+    await interaction.channel.send(embed=em, view=view)
+    await interaction.response.send_message('Sent!', ephemeral=True)  
 
 bot.run(config['bot_token'])
