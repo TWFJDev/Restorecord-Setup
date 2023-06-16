@@ -12,7 +12,7 @@ class VerifyButton(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
         self.value = None
-        self.add_item(discord.ui.Button(style=discord.ButtonStyle.link, url=config['restorecord_link'], label="Verify"))
+        self.add_item(discord.ui.Button(style=discord.ButtonStyle.link, url=config['restorecord_link'], label="Verify", custom_id="restorelink"))
 
 @bot.event
 async def on_ready():
